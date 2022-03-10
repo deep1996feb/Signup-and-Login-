@@ -16,13 +16,15 @@ Including another URLconf
 from atexit import register
 from django.contrib import admin
 from django.urls import path, include
-from api.views import RegisterationAPIView
+from api.views import RegisterationAPIView, UserInfoAPIView, UserDetail
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/apis', include('api.urls')),
     path('auth/register', RegisterationAPIView.as_view(), name='register'),
     path('auth/login', TokenObtainPairView.as_view(), name='login'),
-    path('auth/refresh', TokenRefreshView.as_view(), name='refresh')
+    path('auth/refresh', TokenRefreshView.as_view(), name='refresh'),
+    path('auth/userinfo', UserInfoAPIView.as_view(), name='info'),
+    path('auth/info/<int:pk>', UserDetail.as_view(), name='detail'),
+
 ]

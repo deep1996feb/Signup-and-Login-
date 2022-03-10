@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from api.models import UserInfo
 
 class RegisterationSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=50, min_length=6)
@@ -11,6 +12,7 @@ class RegisterationSerializer(serializers.ModelSerializer):
         fields = ('id', 'first_name', 'last_name', 'email', 'username', 'password')
 
     def validate(self, args):
+        
         email = args.get('email', None)
         username = args.get('username', None)
         if User.objects.filter(email=email).exists():
@@ -21,3 +23,11 @@ class RegisterationSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
+
+
+
+class UserInfoSerializer(serializers.ModelSerializer):
+   # user = RegisterationSerializer(many=True, read_only=True)
+    class Meta:
+        model = UserInfo
+        fields = '__all__'
