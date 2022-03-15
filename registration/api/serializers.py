@@ -27,7 +27,7 @@ class RegisterationSerializer(serializers.ModelSerializer):
 
 
 class UserInfoSerializer(serializers.ModelSerializer):
-   # user = RegisterationSerializer(many=True, read_only=True)
+   #user = RegisterationSerializer(many=True, read_only=True)
     class Meta:
         model = UserInfo
         fields = '__all__'

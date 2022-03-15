@@ -16,7 +16,7 @@ Including another URLconf
 from atexit import register
 from django.contrib import admin
 from django.urls import path, include
-from api.views import RegisterationAPIView, UserInfoAPIView, UserDetail
+from api.views import RegisterationAPIView, UserInfoAPIView, UserDetail, RegistrationAPI
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
@@ -26,5 +26,6 @@ urlpatterns = [
     path('auth/refresh', TokenRefreshView.as_view(), name='refresh'),
     path('auth/userinfo', UserInfoAPIView.as_view(), name='info'),
     path('auth/info/<int:pk>', UserDetail.as_view(), name='detail'),
+    path('auth/updatedlt/<int:pk>', RegistrationAPI.as_view(), name='updatedlt'),
 
 ]
